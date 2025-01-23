@@ -12,46 +12,49 @@ class NumberGame
 		
 		Starting_Display();
 		
+
+		
 		bool var = true;
-		do
-		{
-			try
-			{
-				Console.Clear();
-				Console.Write("Please enter your guess: ");
-				guess = int.Parse(Console.ReadLine());
-				var = true;
-			}
-			catch (FormatException)
-			{
-				Console.WriteLine("ERROR: Please enter an interger");
-				var = false;
-				Thread.Sleep(2000);
-			}
-		}while (var != true);
-		
-		var = true;
 		while (var == true)
-		
 		{
+			bool try_loop = true;
+			do
+			{
+				try
+				{
+					Console.Clear();
+					Console.Write("Please enter your guess: ");
+					guess = int.Parse(Console.ReadLine());
+					try_loop = true;
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("ERROR: Please enter an interger");
+					try_loop = false;
+					Thread.Sleep(2000);
+				}
+			}while (try_loop != true);
+			
 			count++; 
-			if (guess > magic_number)
+			if (guess == 126)
+			{
+				Console.WriteLine("AUTOMATIC WIN!!!!");
+				Secrect_Win(magic_number, count);
+				var = false;
+			}
+			else if (guess > magic_number)
 			{
 				Console.WriteLine("Guess Lower!");
+				Thread.Sleep(1000);
 			}
 			else if (guess < magic_number)
 			{
 				Console.WriteLine("Guess Higher!");
-			}
-			else if (guess == 126)
-			{
-				Winning_Display(magic_number, count);
-				Console.WriteLine("AUTOMATIC WIN!!!!");
-				var = false;
+				Thread.Sleep(1000);
 			}
 			else
 			{
-				Secrect_Win(magic_number, count);
+				Winning_Display(magic_number, count);
 				var = false;
 			}
 		}
@@ -62,11 +65,11 @@ class NumberGame
 	{
 		Console.Clear();
 		Console.WriteLine("WELCOME TO THE NUMBER GAME");
-		Thread.Sleep(1500);
+		Thread.Sleep(2000);
 		Console.WriteLine("A random number between 1 and 100 will be selected.");
-		Thread.Sleep(1500);
+		Thread.Sleep(2000);
 		Console.WriteLine("Your goal is to guess the number in fewest attempts possible!");
-		Thread.Sleep(1500);
+		Thread.Sleep(2000);
 		Console.WriteLine("Good Luck!!");
 		Thread.Sleep(2000);
 	}
@@ -79,7 +82,7 @@ class NumberGame
 	private void Secrect_Win (int magic_number, int count)
 	{
 		Console.WriteLine($"YOU FOUND THE SECRECT WIN!");
-		Thread.Sleep(1500);
+		Thread.Sleep(2000);
 		Console.WriteLine($"The number was {magic_number} but that doesn't matter.");
 		Console.WriteLine("Thats because 126 is my favoirte number!");
 	}
