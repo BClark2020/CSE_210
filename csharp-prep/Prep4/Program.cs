@@ -4,6 +4,9 @@ class Program
 {
 	static void Main(string[] args)
 	{
+		Console.Clear();
+		Program p = new Program();
+		Console.WriteLine("Enter 0 to leave.");
 		List<int> numbers = new List<int>();
 		int new_number = 1 ;
 		
@@ -30,7 +33,9 @@ class Program
 			{
 				numbers.Add(new_number);	
 			} 
+			
 		}
+		p.NumberDisplay(numbers);
 			
 	}
 	
@@ -39,7 +44,7 @@ class Program
 		int sum = 0;
 		int average = 0;
 		int largest = 0;
-		int smallest = 10^100;
+		int smallest = 1000000000;
 			
 		List<int> sorted = new List<int>();
 		
@@ -65,9 +70,9 @@ class Program
 		Console.WriteLine($"Largest number: {largest}");
 		Console.WriteLine($"Smallest number: {smallest}");
 		Console.WriteLine("Your sorted list:");
-		for (int i = 0; i < numbers.Count(); i++)
+		for (int i = 0; i < sorted.Count(); i++)
 		{
-			Console.WriteLine($"{numbers[i]}");
+			Console.WriteLine($"{sorted[i]}");
 		}
 	}
 	
@@ -76,12 +81,12 @@ class Program
 	{
 		int loop = numbers.Count();
 		List<int> sorted = new List<int>();
-		for (int i = 0; i <= loop; i++)
+		for (int i = 0; i <  loop; i++)
 		{
-			int smaller = 10^100;
-			for (int z = 0; i <= numbers.Count(); z++)
+			int smaller = 1000000000;
+			for (int z = 0; z < numbers.Count() ; z++)
 			{
-				if (smaller < numbers[z])
+				if (smaller > numbers[z])
 				{
 					smaller = numbers[z];
 				}
