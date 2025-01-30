@@ -13,14 +13,16 @@ public class Journal
 		"How did you see the hand of the Lord in your life today?",
 		"What is something you are greateful for?"
 	};
-	
-	string _file = "";
 	public List<Entry> _entries = new List<Entry>();
+	List<string> files = new List<string>();
+	
+	string _current_file;
 	public void menu()
 	{
 		while(true)
 		{
 			Console.Clear();
+			Console.WriteLine($"Current file: {_current_file}\n");
 			Console.WriteLine("MENU:");	
 			Console.WriteLine("1.) New entry");	
 			Console.WriteLine("2.) Display Journal");	
@@ -67,50 +69,98 @@ public class Journal
 	
 	private void Display()
 	{
-		if(_file == "")
+		
+		foreach(Entry entry in _entries)
 		{
-			foreach(Entry entry in _entries)
-			{
-				entry.Display();
-			}
-		}
+			entry.Display();
+		}	
+		
+		string pause = Console.ReadLine();
 	}
 	
 	private void Save()
 	{
-		 try
+		string _file = "";
+		string overwrite ="";
+		Console.WriteLine("Enter a name for this journal: ");
+		_file = Console.ReadLine();
+		if (_file == "filenames.txt")
 		{
-			using (StreamWriter writer = new StreamWriter(_file))
+			Console.WriteLine("Sorry, you cannot overwrite this file.");
+		}
+		else
+		{
+			loadFiles();
+			if (files.Contains(_file) && _current_file != _file)
 			{
-				foreach (Entry entry in _entries)
+				bool _var = true;
+				do
 				{
-					writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._entry}");
+					Console.WriteLine("Are you sure you want to overwrite this file?");
+					overwrite = Console.ReadLine();
+					if (overwrite == "yes" || overwrite == "no"|| overwrite ==  "Yes" || overwrite ==  "No")
+					{
+						
+						_var = true;
+					}		
+					else
+					{
+						Console.WriteLine("Please enter a yes or no.");
+						_var = false;
+					}
+					
+				}while(_var != true);
+			}
+			else
+			{
+				files.Add(_file);
+				saveFiles();
+			}
+			
+			
+			if(overwrite == "yes"|| overwrite == "Yes" || overwrite == "")
+			{
+				try
+				{
+					using (StreamWriter writer = new StreamWriter(_file))
+					{
+						foreach (Entry entry in _entries)
+						{
+							writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._entry}");
+						}
+					}
+
+					Console.WriteLine("Journal saved successfully.");
+					_current_file = _file;
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine($"Error saving journal: {ex.Message}");
 				}
 			}
-
-			Console.WriteLine("Journal saved successfully.");
+			else
+			{
+				return;
+			}
 		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error saving journal: {ex.Message}");
-		}
+	
 	}
 	
 	private void Load()
 	{
+		string _file;
 		Console.WriteLine("Enter a file to load: ");
-		_file = Console.ReadLine();
-		
+		_file = (Console.ReadLine());
 		try
 		{
 			_entries.Clear();
 
 			using (StreamReader reader = new StreamReader(_file))
 			{
+				Console.WriteLine("Loading entries");
 				string line;
 				while ((line = reader.ReadLine()) != null)
-				{
-					 
+				{		 
 					Entry _entry = new Entry();
 					string[] parts = line.Split('|');
 					_entry._date = DateTime.Parse(parts[0]);
@@ -118,17 +168,44 @@ public class Journal
 					_entry._entry = parts[2];
 					_entries.Add(_entry);
 				}
+				Thread.Sleep(1000);
 			}
 
 			Console.WriteLine("Journal loaded successfully.");
+			Thread.Sleep(2000);
+			_current_file = _file;
 		}
 		catch (Exception ex)
 		{
 			Console.WriteLine($"Error loading journal: {ex.Message}");
 		}
+	
+	}
+	private void loadFiles()
+	{
+		files.Clear();
 		
+		using (StreamReader reader = new StreamReader("filenames.txt"))
+		{
+			string line;
+			while((line = reader.ReadLine()) != null)
+			{
+				files.Add(line);
+			}
+		}	
+		saveFiles();	
 	}
 	
+	public void saveFiles()
+	{
+		using (StreamWriter writer = new StreamWriter("filenames.txt"))
+		{
+			foreach(string file in files)
+			{
+				writer.WriteLine(file);
+			}
+		}
+	}
 }
 
 public class Entry
@@ -152,7 +229,7 @@ public class Entry
 	
 	public void Display()
 	{
-		Console.WriteLine(_date + ":\n" + _prompt + "\n" + _entry);
+		Console.WriteLine(_date + ":\n" + _prompt + "\n" + _entry + "\n");
 	}
 	
 }
@@ -160,6 +237,7 @@ class Program
 {
 	static void Main(string[] args)
 	{
+		Console.Clear();
 		Journal _journal = new Journal();
 		_journal.menu();
 		
