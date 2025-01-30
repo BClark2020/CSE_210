@@ -79,21 +79,21 @@ public class Journal
 	private void Save()
 	{
 		 try
-        {
-            using (StreamWriter writer = new StreamWriter(_file))
-            {
-                foreach (Entry entry in _entries)
-                {
-                    writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._entry}");
-                }
-            }
+		{
+			using (StreamWriter writer = new StreamWriter(_file))
+			{
+				foreach (Entry entry in _entries)
+				{
+					writer.WriteLine($"{entry._date}|{entry._prompt}|{entry._entry}");
+				}
+			}
 
-            Console.WriteLine("Journal saved successfully.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error saving journal: {ex.Message}");
-        }
+			Console.WriteLine("Journal saved successfully.");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error saving journal: {ex.Message}");
+		}
 	}
 	
 	private void Load()
@@ -160,6 +160,8 @@ class Program
 {
 	static void Main(string[] args)
 	{
+		Journal _journal = new Journal();
+		_journal.menu();
 		
 	}
 }
