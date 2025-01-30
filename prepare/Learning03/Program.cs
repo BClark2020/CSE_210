@@ -1,3 +1,4 @@
+
 using System;
 using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
@@ -15,14 +16,22 @@ public class Journal
 	};
 	public List<Entry> _entries = new List<Entry>();
 	List<string> files = new List<string>();
-	
 	string _current_file;
+	
+	bool saved = true;
 	public void menu()
 	{
 		while(true)
 		{
 			Console.Clear();
-			Console.WriteLine($"Current file: {_current_file}\n");
+			if (saved == true)
+			{
+				Console.WriteLine($"Current file: {_current_file}\n");
+			}
+			else if (saved == false)
+			{
+				Console.WriteLine($"Current file: {_current_file}*\n");	
+			}
 			Console.WriteLine("MENU:");	
 			Console.WriteLine("1.) New entry");	
 			Console.WriteLine("2.) Display Journal");	
@@ -39,6 +48,7 @@ public class Journal
 					Entry _entry = new Entry();
 					_entry.writeEntry(_prompts);
 					_entries.Add(_entry);
+					saved = false;
 					break;
 				
 				case "2":
@@ -132,6 +142,7 @@ public class Journal
 
 					Console.WriteLine("Journal saved successfully.");
 					_current_file = _file;
+					saved = true;
 				}
 				catch (Exception ex)
 				{
@@ -194,8 +205,7 @@ public class Journal
 			}
 		}	
 		saveFiles();	
-	}
-	
+	}	
 	public void saveFiles()
 	{
 		using (StreamWriter writer = new StreamWriter("filenames.txt"))
