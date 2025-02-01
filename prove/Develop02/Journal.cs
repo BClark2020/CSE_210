@@ -12,7 +12,6 @@ public class Journal
 	public List<Entry> _entries = new List<Entry>();
 	List<string> files = new List<string>();
 	string _current_file;
-	
 	bool saved = true;
 	public void menu()
 	{
@@ -180,6 +179,7 @@ public class Journal
 			Console.WriteLine("Journal loaded successfully.");
 			Thread.Sleep(2000);
 			_current_file = _file;
+			saved = true;
 		}
 		catch (Exception ex)
 		{
@@ -187,6 +187,7 @@ public class Journal
 		}
 	
 	}
+
 	private void loadFiles()
 	{
 		files.Clear();
@@ -201,6 +202,7 @@ public class Journal
 		}	
 		saveFiles();	
 	}	
+
 	public void saveFiles()
 	{
 		using (StreamWriter writer = new StreamWriter("filenames.txt"))
