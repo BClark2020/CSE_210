@@ -65,7 +65,6 @@ public class Journal
 					Console.WriteLine("ERROR: that input is not recognized.");
 					Thread.Sleep(2000);
 					break;
-
 			}
 		}
 		
@@ -114,6 +113,10 @@ public class Journal
 					}
 					
 				}while(_var != true);
+			}
+			else if (files.Contains(_file))
+			{
+				saveFiles();
 			}
 			else
 			{
