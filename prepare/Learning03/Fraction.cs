@@ -35,7 +35,7 @@ class Fraction
     
     public double GetFraction()
     {
-        double _fraction = (_top/_bottom);
+        double _fraction = (double)_top/_bottom;
         return _fraction;
     }
 }

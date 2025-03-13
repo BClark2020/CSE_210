@@ -14,7 +14,7 @@ class Program
         while(loop)
         {
             Console.Clear();
-            Console.Write("1.) Set Top\n2.) Set bottom\n3.) Display Fraction\n4.) Exit Program");   
+            Console.Write("1.) Set Top\n2.) Set bottom\n3.) Display Fraction\n4.) Exit Programn\nEnter Option: ");   
             string _option = Console.ReadLine();
             Thread.Sleep(200);
             
@@ -51,13 +51,13 @@ class Program
                     Thread.Sleep(100);
                     if (_bottom == 0)
                     {
-                        throw new Exception("ERROR: You cannot divide by ZERO");
+                        throw new Exception("You cannot divide by ZERO");
                     }
                     frac.SetBottom(_bottom); 
                     _var = false;
                 } catch (FormatException)
                 {
-                    Console.WriteLine("ERROR: Pleas enter an int value."); 
+                    Console.WriteLine("ERROR: Please enter an int value."); 
                     Thread.Sleep(3000);
                     _var =  true;
                 } catch (Exception ex)
@@ -83,7 +83,7 @@ class Program
                 
                 case "4":
                 loop = false;
-                Console.WriteLine("Thank you for using my program ༼ つ ◕_◕ ༽つ");
+                Console.WriteLine("Thank you for using my program (~^-^)~");
                 break;
                 
                 default:
