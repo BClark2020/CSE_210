@@ -6,6 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
         Program p = new Program();
         List<string> _assignments = new List<string>();
         string _name;
@@ -21,8 +22,8 @@ class Program
             string _title = " ";
             Console.Clear();
             Console.WriteLine("Enter 'leave' to quit program.");
-            Console.Write("1.) Math Assignment\n 2.) Writing assignemnt");
-            string option = Console.ReadLine();
+            Console.Write("1.) Math Assignment\n2.) Writing assignemnt\nEnter: ");
+            string option = Console.ReadLine(); 
             
             switch(option)
             {
@@ -45,9 +46,11 @@ class Program
                 break;
                 
                 case "leave":
-                Console.WriteLine("Thank you for using my program (~^-^)~");
+                Console.Clear();
+                Console.WriteLine("Thank you for using my program (~^-^)~\n");
                 Console.WriteLine("Here is the list of your assignments: ");
                 p.DisplayAssignemnts(_assignments);
+                loop =  false;
                 break;
                 
                 default:

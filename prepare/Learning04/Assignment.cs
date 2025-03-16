@@ -20,7 +20,7 @@ class Assignment{
     }
     public string GetSummary()
     {
-        string summary = _student + "-" + _topic;
+        string summary = _student + " - " + _topic;
         return summary;  
     }
     
