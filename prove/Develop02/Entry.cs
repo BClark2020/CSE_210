@@ -16,7 +16,6 @@ public class Entry
 		Console.Write("Entry: ");
 		_entry = (Console.ReadLine()); 
 	}
-	
 	public void Display()
 	{
 		Console.WriteLine(_date + ":\n" + _prompt + "\n" + _entry + "\n");
