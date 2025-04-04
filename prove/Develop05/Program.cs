@@ -62,7 +62,7 @@ class Program
         {
             Console.WriteLine("Select goal type:\n1.) Simple Goal\n2.) Eternal Goal\n3.) Checklist Goal");
             choice = Console.ReadLine();
-            if (choice != "1" || choice != "2" || choice != "3")
+            if (choice != "1" && choice != "2" && choice != "3")
             {
                 Console.WriteLine("PLease enter an integer between 1 and 3 to make you selection.");
                 var = true;
@@ -107,11 +107,43 @@ class Program
         }
         else if (choice == "3")
         {
-            Console.Write("Enter target count: ");
-            int target = int.Parse(Console.ReadLine());
-                
-            Console.Write("Enter bonus points: ");
-            int bonus = int.Parse(Console.ReadLine());
+            int bonus = 0;
+            int target = 0;
+        
+            var  = true;
+            while(var)
+            {
+                try
+                {
+                    Console.Write("Enter target count: ");
+                    target = int.Parse(Console.ReadLine());
+                    var = false;
+                }
+                catch (FormatException) 
+                {
+                    Console.WriteLine("ERROR: Please enter an integer value.");
+                    var = true;
+                } 
+            }
+            
+            
+            
+            var  = true;
+            while(var)
+            {
+                try
+                {
+                    Console.Write("Enter bonus points: ");
+                    bonus = int.Parse(Console.ReadLine());
+                    var = false;
+                }
+                catch (FormatException) 
+                {
+                    Console.WriteLine("ERROR: Please enter an integer value.");
+                    var = true;
+                } 
+            }
+            
                 
             goal.Add(new ChecklistGoal(name, desc, points, target, bonus));
         }     
