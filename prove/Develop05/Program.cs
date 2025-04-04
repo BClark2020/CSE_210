@@ -5,9 +5,11 @@ class Program
 {
     static List<Goal> goal = new List<Goal>();
     static int score = 0;
+    
 
     static void Main()
     {
+
         LoadData();
         while (true)
         {
@@ -17,6 +19,7 @@ class Program
             Console.WriteLine("1.) Make Goal\n2.) List Goals\n3.) Record Event\n4.) Save\n5.) Load\n6.) Exit");
             Console.Write("Choose an option: ");
             string option = Console.ReadLine();
+            Console.WriteLine("\n");
             
             switch (option)
             {
@@ -25,7 +28,7 @@ class Program
                     break;
                     
                 case "2": 
-                    ListGoals(); 
+                    ListGoals(0); 
                     break;
                     
                 case "3": 
@@ -61,6 +64,7 @@ class Program
         while(var)
         {
             Console.WriteLine("Select goal type:\n1.) Simple Goal\n2.) Eternal Goal\n3.) Checklist Goal");
+            Console.Write("Choose an option: ");
             choice = Console.ReadLine();
             if (choice != "1" && choice != "2" && choice != "3")
             {
@@ -150,7 +154,7 @@ class Program
     }
 
 
-    static void ListGoals()
+    static void ListGoals(int wait)
     {
         Console.WriteLine("\nYour Goals:");
         
@@ -158,14 +162,17 @@ class Program
         {
             Console.WriteLine($"{i + 1}. {goal[i].GetStatus()}");
         }
-              
-        Console.WriteLine("Press Enter to continue...");
-        Console.ReadLine();
+        
+        if (wait == 0)  
+        {
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+        } 
     }
 
     static void RecordEvent()
     {
-        ListGoals();
+        ListGoals(1);
         int index = 0;
         bool var = true;
         while(var)
@@ -201,6 +208,7 @@ class Program
                writer.WriteLine(g.Serialize()); 
             }          
         }
+        
     }
 
     static void LoadData()
