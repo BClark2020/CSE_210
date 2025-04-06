@@ -19,7 +19,7 @@ class Program
         {
             string _option = "";
             Console.Clear();
-            Console.Write("Enter a numer\n1.) Add Video\n2.) Display Videos\n3.) Quit\nOption:");
+            Console.Write("Enter a numer\n1.) Add Video\n2.) Display Videos\n3.) Quit\nOption: ");
             _option = Console.ReadLine();
             
             switch (_option)
@@ -47,13 +47,17 @@ class Program
     
     private void DisplayVideos()
     {
+        Console.Clear();
         for (int i = 0; i < _videos.Count; i++)
         {
             Video _vid = _videos[i].Item1;
             Comment _com = _videos[i].Item2; 
             _vid.DisplayInfo();
             _com.DisplayInfo();
+            Console.WriteLine("\n---------------------");
         }
+        Console.WriteLine("Press enter to leave.");
+        string _wait = Console.ReadLine();
     }
     
     private void AddNewVideo()
@@ -185,26 +189,23 @@ class Video
     {
         _author = _entered_author; 
     }
-    
-     public int GetLengthSeconds()
-    {
-        return _length_seconds;
-    }
-    
+       
     public void SetLength(int _entered_length)
     {
         _length_seconds = _entered_length; 
-        GetLengthSeconds();
+        _length_mintues = $"{_length_seconds/60}:";
+        if (_length_seconds%60 == 0)
+        {
+            _length_mintues += "00";
+        }
+        else
+        {
+            _length_mintues += $"{_length_seconds%60}";
+        }
     }
-    
-    public string GetLengthMinutes()
-    {
-        string _length_mintues = $"{_length_seconds/60}:{_length_seconds%60}";
-        return _length_mintues;
-    }
+
     public void DisplayInfo()
     {
-        Console.Clear();
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Author: {_author}");
         Console.WriteLine($"Length in seconds: {_length_seconds}");
@@ -222,6 +223,7 @@ class Comment
     
     public void DisplayInfo()
     {
+        Console.WriteLine($"Number of comments: {_comments.Count()}");
         Console.WriteLine("------- COMMENTS -------");
         for(int i = 0; i < _comments.Count(); i++)
         {
