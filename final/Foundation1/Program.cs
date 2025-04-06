@@ -43,8 +43,7 @@ class Program
             }
         }   
     }
-    
-    
+   
     private void DisplayVideos()
     {
         Console.Clear();
@@ -58,7 +57,7 @@ class Program
         }
         Console.WriteLine("Press enter to leave.");
         string _wait = Console.ReadLine();
-    }
+    }    
     
     private void AddNewVideo()
     {
@@ -166,69 +165,5 @@ class Program
         _com4.AddComment("Name 44", "Comment 44");
         _com4.AddComment("Name 45", "Comment 45");
         _videos.Add((_vid4, _com4));
-    }
-}
-
-// I want to be able to save instances of these classes as to mroe efficently save the required information
-class Video
-{
-
-    // create a class with its respective variables
-    // all these variables will change so I like to have fun initilizations 
-    private string _title = "A really awesome video";
-    private string _author = "Some really cool dude I imagine";
-    private int _length_seconds = 1000000;
-    private string _length_mintues = "I don't even know what that is";
-
-    public void SetTitle(string _entered_title)
-    {
-        _title = _entered_title; 
-    }
-    
-    public void SetAuthor(string _entered_author)
-    {
-        _author = _entered_author; 
-    }
-       
-    public void SetLength(int _entered_length)
-    {
-        _length_seconds = _entered_length; 
-        _length_mintues = $"{_length_seconds/60}:";
-        if (_length_seconds%60 == 0)
-        {
-            _length_mintues += "00";
-        }
-        else
-        {
-            _length_mintues += $"{_length_seconds%60}";
-        }
-    }
-
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Title: {_title}");
-        Console.WriteLine($"Author: {_author}");
-        Console.WriteLine($"Length in seconds: {_length_seconds}");
-        Console.WriteLine($"Length in Minutes: {_length_mintues}"); 
-    }
-}
-
-class Comment
-{
-    private List<(string, string)> _comments = new List<(string, string)>();
-    public void AddComment(string _name, string _comment)
-    {
-        _comments.Add((_name, _comment));
-    }
-    
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"Number of comments: {_comments.Count()}");
-        Console.WriteLine("------- COMMENTS -------");
-        for(int i = 0; i < _comments.Count(); i++)
-        {
-            Console.WriteLine($"\nName: {_comments[i].Item1}");
-            Console.WriteLine($"{_comments[i].Item2}");
-        }  
     }
 }
