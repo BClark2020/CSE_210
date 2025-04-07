@@ -4,15 +4,15 @@ using System.Runtime.CompilerServices;
 class Run : Activity
 {
     private double _distance;
-    public Run(double _dist, int _minutes, string _date)
-    :base( _minutes, _date)
+    public Run(double dist, int minutes, string date)
+    : base(minutes, date)
     {
-        _distance = _dist;
+        _distance = dist;
     }
 
-    
+
     public override double GetDistance()
-    { 
+    {
         return _distance;
     }
 

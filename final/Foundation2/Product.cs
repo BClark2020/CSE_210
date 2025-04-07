@@ -4,7 +4,7 @@ class Product
     private string _id = " ";
     private decimal _price = 0.00m;
     private int _qty = 1;
-    
+
     public Product(string itemName, string itemId, decimal itemPrice, int itemQty)
     {
         _name = itemName;
@@ -17,7 +17,7 @@ class Product
     {
         return _name;
     }
-    
+
     public string GetProductID()
     {
         return _id;

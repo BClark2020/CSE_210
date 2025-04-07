@@ -1,17 +1,17 @@
-class Cycle: Activity
+class Cycle : Activity
 {
 
     private double _speed;
-    public Cycle(double _cycle_speed, int _minutes, string _date)
-    :base(_minutes, _date)
+    public Cycle(double cycleSpeed, int minutes, string date)
+    : base(minutes, date)
     {
-        _speed = _cycle_speed;
+        _speed = cycleSpeed;
     }
-    
+
     public override double GetSpeed()
     {
         return _speed;
-    } 
+    }
 
     public override double GetDistance()
     {
@@ -19,7 +19,7 @@ class Cycle: Activity
     }
 
     public override double GetPace()
-    { 
+    {
         return 60 / _speed;
     }
 }

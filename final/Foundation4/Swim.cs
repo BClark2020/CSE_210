@@ -2,7 +2,7 @@ class Swim : Activity
 {
     private int _laps;
     public Swim(int distLaps, int minutes, string date)
-    :base(minutes, date)
+    : base(minutes, date)
     {
         _laps = distLaps;
     }

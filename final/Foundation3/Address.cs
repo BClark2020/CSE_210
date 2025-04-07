@@ -1,21 +1,22 @@
-class Address 
+class Address
 {
     private string _street = " ";
     private string _city = " ";
-    private string _state_prov = " ";
+    private string _stateProv = " ";
     private string _country = " ";
-    
-    public Address(string _street_addrs, string _city_addrs, string _stateprov_addrs, string _country_addrs)
+
+    public Address(string streetAddrs, string cityAddrs, string stateProvAddrs, string countryAddrs)
     {
-        _street = _street_addrs;
-        _city = _city_addrs;
-        _state_prov = _stateprov_addrs;
-        _country = _country_addrs;
+        _street = streetAddrs;
+        _city = cityAddrs;
+        _stateProv = stateProvAddrs;
+        _country = countryAddrs;
     }
-    
+
     public string GetAddress()
     {
-        string _address = $"Street Address: {_street}, {_city}\nState/Province: {_state_prov}\nCountry: {_country}";
-        return _address;
+        string address = $" Street Address:{_street}, {_city}\nState/Province: {_stateProv}\nCountry: {_country}";
+        return address;
     }
+
 }

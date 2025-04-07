@@ -3,154 +3,157 @@ using System.Runtime.InteropServices.Marshalling;
 class Order
 {
     private List<Product> _products = new List<Product>();
-    private string _packing_label = " ";
-    private string _shipping_label = " ";
+    private string _packingLabel = " ";
+    private string _shippingLabel = " ";
     private Customer _customer;
-    bool USA = true;
-    
+    bool _usa = true;
+
     public void MakeOrder()
     {
         GetCustomer();
         AddProducts();
         MakePakingLabel();
         MakeShippingLabel();
-        DisplayOrder(); 
+        DisplayOrder();
     }
-    
+
     private void GetCustomer()
     {
         Console.Clear();
         Console.WriteLine("-------Customer Information-------");
         Console.Write("Customer name: ");
-        string _name = Console.ReadLine();
-        
+        string name = Console.ReadLine();
+
         Console.Write("Customer Street Address: ");
-        string _street = Console.ReadLine();
-        
+        string street = Console.ReadLine();
+
         Console.Write("City: ");
-        string _city = Console.ReadLine();
-        
+        string city = Console.ReadLine();
+
         Console.Write("State/Province: ");
-        string _state = Console.ReadLine();
-        
+        string state = Console.ReadLine();
+
         Console.Write("Country: ");
-        string _country = Console.ReadLine();
-        
-        _customer = new Customer(_name, _street, _city, _state, _country);  
+        string country = Console.ReadLine();
+
+        _customer = new Customer(name, street, city, state, country);
     }
-    
+
     private void AddProducts()
     {
-        bool _add = true;
-        while(_add)
+        bool add = true;
+        while (add)
         {
             Console.Clear();
             Console.WriteLine("-------Enter Your Products-------");
             Console.WriteLine("Enter \" \" to leave.");
-            
+
             Console.Write("Item Name: ");
-            string _name = Console.ReadLine();
-            
-            if (string.IsNullOrWhiteSpace(_name))
+            string name = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(name))
             {
                 return;
             }
-            
+
             Console.Write("Item ID: ");
-            string _id = Console.ReadLine();
-            
-            decimal _price = 0.00m; 
-            bool _loop = false;
+            string id = Console.ReadLine();
+
+            decimal price = 0.00m;
+            bool loop = false;
             do
             {
                 try
                 {
                     Console.Write("Item Price: ");
-                    _price = decimal.Parse(Console.ReadLine());
-                    _loop = false;      
-                }catch (FormatException)
-                { 
+                    price = decimal.Parse(Console.ReadLine());
+                    loop = false;
+                }
+                catch (FormatException)
+                {
                     Console.WriteLine("\nERROR: enter a value with two decimal points (example: 25.00, 14.99).\n");
                     Thread.Sleep(2000);
-                    _loop = true;    
-                }    
-            }while(_loop);
-            
-            int _qty =0;
+                    loop = true;
+                }
+            } while (loop);
+
+            int qty = 0;
             do
             {
                 try
                 {
                     Console.Write("Item Quantity: ");
-                    _qty = int.Parse(Console.ReadLine());
-                    _loop = false;      
-                }catch (FormatException)
-                { 
+                    qty = int.Parse(Console.ReadLine());
+                    loop = false;
+                }
+                catch (FormatException)
+                {
                     Console.WriteLine("\nERROR: enter an integer value (example: 1 , 45, 27).\n");
                     Thread.Sleep(2000);
-                    _loop = true;    
-                }    
-            }while(_loop);
-            
-            Product _product = new Product(_name, _id, _price, _qty);
-            _products.Add(_product);
+                    loop = true;
+                }
+            } while (loop);
+
+            Product product = new Product(name, id, price, qty);
+            _products.Add(product);
         }
-  
+
     }
-    
+
     private void MakePakingLabel()
     {
-        decimal _total = 0.00m;
-        _packing_label = "-------Packing Label-------";
-        _packing_label += "\nItem Name: Item ID";
-        foreach (Product _product in _products)
+        decimal total = 0.00m;
+        _packingLabel = "-------Packing Label-------";
+        _packingLabel += "\nItem Name: Item ID";
+        foreach (Product product in _products)
         {
-            string _item = _product.GetItemName();
-            string _item_id = _product.GetProductID();
-            
-            decimal _price = _product.GetPrice();
-            int _qty = _product.GetQuantity();
-            
-            _total += _price * _qty;
-            
-            string _line = $"\n{_item}: {_item_id}";
-            _packing_label += _line;
+            string item = product.GetItemName();
+            string itemId = product.GetProductID();
+
+            decimal price = product.GetPrice();
+            int qty = product.GetQuantity();
+
+            total += price * qty;
+
+            string _line = $"\n{item}: {itemId}";
+            _packingLabel += _line;
         }
-        decimal _tax = _total * 0.06m;
+        decimal tax = total * 0.06m;
         Console.WriteLine("---Pricing---");
-        _packing_label += $"\nBefore Tax: ${_total}";
-        _packing_label += $"\nTax: ${_tax:0.00}";
-        
-        int _shipping;
+        _packingLabel += $"\nBefore Tax: ${total}";
+        _packingLabel += $"\nTax: ${tax:0.00}";
+
+        int shipping;
         if (_customer.IsUSA())
         {
-            _shipping = 5;
-        } else
-        {
-            _shipping = 35;
+            shipping = 5;
         }
-        
-        _packing_label += $"\nShipping: ${_shipping - 0.01m:0.00}";
-        _packing_label += $"\nTotal: ${(_total + _tax + _shipping):0.00}";
+        else
+        {
+            shipping = 35;
+        }
+
+        _packingLabel += $"\nShipping: ${shipping - 0.01m:0.00}";
+        _packingLabel += $"\nTotal: ${(total + tax + shipping):0.00}";
     }
-    
+
     private void MakeShippingLabel()
     {
-        _shipping_label = "-------Shipping Label-------";
-        _shipping_label +=$"\n{_customer.GetCustomerName()}";
-        _shipping_label += $"\n{_customer.GetAddress()}"; 
+        _shippingLabel = "-------Shipping Label-------";
+        _shippingLabel += $"\n{_customer.GetCustomerName()}";
+        _shippingLabel += $"\n{_customer.GetAddress()}";
     }
-    
 
-        public void DisplayOrder( bool _display_all = false)
+
+    public void DisplayOrder(bool displayAll = false)
     {
         Console.Clear();
-        Console.WriteLine(_shipping_label);
-        Console.WriteLine(_packing_label);
-        if (_display_all == false)
+        Console.WriteLine(_shippingLabel);
+        Console.WriteLine(_packingLabel);
+        if (displayAll == false)
         {
             Console.WriteLine("Press enter to leave.");
-            string _wait =  Console.ReadLine();
-        } 
+            string wait = Console.ReadLine();
+        }
     }
 }

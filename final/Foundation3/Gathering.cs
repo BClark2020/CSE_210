@@ -7,7 +7,7 @@ class Gathering : Event
     {
         _weather = eventWeather;
     }
-    
+
     public override string DisplayFullDetails()
     {
         string ad = "Event type: Gathering\n";
@@ -15,7 +15,7 @@ class Gathering : Event
         ad += DisplayStandardDetails();
         return ad;
     }
-     public override string DisplayShortDescription()
+    public override string DisplayShortDescription()
     {
         string ad = "Event type: Gathering";
         ad += $"\nTitle: {GetTitle()}";

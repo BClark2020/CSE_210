@@ -6,23 +6,23 @@ abstract class Activity
     private int _time_minutes;
     private string _date;
 
-    
+
     public Activity(int minutes, string activityDate)
     {
         _time_minutes = minutes;
         _date = activityDate;
     }
-    
+
     public int GetTime()
     {
-        return _time_minutes; 
+        return _time_minutes;
     }
-    
+
     public string GetDate()
     {
         return _date;
     }
-        public virtual double GetDistance()
+    public virtual double GetDistance()
     {
         return 0;
     }

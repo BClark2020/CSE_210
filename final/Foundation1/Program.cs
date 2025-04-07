@@ -7,74 +7,74 @@ class Program
     public List<(Video, Comment)> _videos = new List<(Video, Comment)>();
     static void Main(string[] args)
     {
-        Program program = new Program(); 
+        Program program = new Program();
         program.SetupExamples();
-        program.Menu(); 
+        program.Menu();
         Console.WriteLine("Thank you for using my prgram! Have a great day! (~^-^)~");
     }
-    
+
     public void Menu()
     {
-        while(true)
+        while (true)
         {
             string option = "";
             Console.Clear();
             Console.Write("Enter a numer\n1.) Add Video\n2.) Display Videos\n3.) Quit\nOption: ");
             option = Console.ReadLine();
-            
+
             switch (option)
             {
                 case "1":
                     AddNewVideo();
-                break;
-                
+                    break;
+
                 case "2":
                     DisplayVideos();
-                break;
-                
+                    break;
+
                 case "3":
-                return;
-                
+                    return;
+
                 default:
                     Console.WriteLine("ERROR: input not recognized.");
                     Thread.Sleep(2000);
-                break;
-                
+                    break;
+
             }
-        }   
+        }
     }
-   
+
     private void DisplayVideos()
     {
         Console.Clear();
         for (int i = 0; i < _videos.Count; i++)
         {
             Video vid = _videos[i].Item1;
-            Comment com = _videos[i].Item2; 
+            Comment com = _videos[i].Item2;
             vid.DisplayInfo();
             com.DisplayInfo();
             Console.WriteLine("\n---------------------");
         }
         Console.WriteLine("Press enter to leave.");
         string wait = Console.ReadLine();
-    }    
-    
+    }
+
     private void AddNewVideo()
     {
         Video video = new Video();
         Comment comment = new Comment();
-                    
+
         // Get and save title
         Console.Write("Enter video title: ");
         string title = Console.ReadLine();
         video.SetTitle(title);
-                    
+
         // Get and save author
         Console.Write("Enter the author of the video: ");
         string author = Console.ReadLine();
         video.SetAuthor(author);
-                 
-                    
+
+
         // Get and save length
         bool var = false;
         do
@@ -85,17 +85,18 @@ class Program
                 int length = int.Parse(Console.ReadLine());
                 video.SetLength(length);
                 var = false;
-            } catch (FormatException)
+            }
+            catch (FormatException)
             {
                 Console.WriteLine("\nFORMAT ERROR: Please enter an integer representing the lengh of the video in seconds.");
                 var = true;
             }
-        }while(var);
-                    
-                    
+        } while (var);
+
+
         // edits the comment object 
         var = true;
-        while(var)
+        while (var)
         {
             Console.Clear();
             Console.WriteLine("Enter ' ' to leave.");
@@ -109,14 +110,14 @@ class Program
             {
                 Console.Write("Enter the name of commentor: ");
                 string newName = Console.ReadLine();
-                comment.AddComment(newName, newComment);  
+                comment.AddComment(newName, newComment);
             }
         }
-    
+
         // Saves eddited objects
-        _videos.Add((video, comment));  
+        _videos.Add((video, comment));
     }
-    
+
     private void SetupExamples()
     {
         Video vid1 = new Video();
@@ -127,7 +128,7 @@ class Program
         Comment com3 = new Comment();
         Video vid4 = new Video();
         Comment com4 = new Comment();
-        
+
         vid1.SetTitle("Video 1");
         vid1.SetAuthor("Author 1");
         vid1.SetLength(100);
@@ -137,7 +138,7 @@ class Program
         com1.AddComment("Name 14", "Comment 14");
         com1.AddComment("Name 15", "Comment 15");
         _videos.Add((vid1, com1));
-        
+
         vid2.SetTitle("Video 2");
         vid2.SetAuthor("Author 2");
         vid2.SetLength(200);
@@ -146,7 +147,7 @@ class Program
         com2.AddComment("Name 23", "Comment 23");
         com2.AddComment("Name 24", "Comment 24");
         _videos.Add((vid2, com2));
-        
+
         vid3.SetTitle("Video 3");
         vid3.SetAuthor("Author 3");
         vid3.SetLength(300);
@@ -155,7 +156,7 @@ class Program
         com3.AddComment("Name 33", "Comment 33");
         com3.AddComment("Name 34", "Comment 34");
         _videos.Add((vid3, com3));
-        
+
         vid4.SetTitle("Video 4");
         vid4.SetAuthor("Author 4");
         vid4.SetLength(400);

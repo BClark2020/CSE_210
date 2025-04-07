@@ -10,49 +10,49 @@ class Program
         program.Menu();
         Console.WriteLine("Thank you for using my program (~^-^)~\n");
     }
-    
-    
+
+
     private void Menu()
     {
-        while(true)
+        while (true)
         {
             Console.Clear();
             Console.Write("Select a number:\n1.) Make New Order\n2.) Display Orders\n3.) Quit\nOption: ");
-            string _option = Console.ReadLine();
-            
-            switch(_option)
+            string option = Console.ReadLine();
+
+            switch (option)
             {
                 case "1":
-                    Order _order =  new Order();
-                    _order.MakeOrder();
-                    _orders.Add(_order);
-                break;
-                
+                    Order order = new Order();
+                    order.MakeOrder();
+                    _orders.Add(order);
+                    break;
+
                 case "2":
                     DisplayOrders();
-                break;
-                
+                    break;
+
                 case "3":
-                
-                return;
-                
+
+                    return;
+
                 default:
                     Console.WriteLine("Please select an option 1, 2 or 3");
-                break;
-                
+                    break;
+
             }
-          
+
         }
     }
     private void DisplayOrders()
     {
         Console.Clear();
-        foreach (Order _order in _orders)
+        foreach (Order order in _orders)
         {
-            _order.DisplayOrder(true);
+            order.DisplayOrder(true);
             Console.WriteLine("\n");
         }
         Console.WriteLine("Press enter to leave.");
-        string _wait =  Console.ReadLine();
-    }  
+        string wait = Console.ReadLine();
+    }
 }

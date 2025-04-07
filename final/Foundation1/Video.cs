@@ -6,30 +6,30 @@ class Video
     // all these variables will change so I like to have fun initilizations 
     private string _title = "A really awesome video";
     private string _author = "Some really cool dude I imagine";
-    private int _length_seconds = 1000000;
-    private string _length_mintues = "I don't even know what that is";
+    private int _lengthSeconds = 1000000;
+    private string _lengthMintues = "I don't even know what that is";
 
-    public void SetTitle(string _entered_title)
+    public void SetTitle(string enteredTitle)
     {
-        _title = _entered_title; 
+        _title = enteredTitle;
     }
-    
-    public void SetAuthor(string _entered_author)
+
+    public void SetAuthor(string enteredAuthor)
     {
-        _author = _entered_author; 
+        _author = enteredAuthor;
     }
-       
-    public void SetLength(int _entered_length)
+
+    public void SetLength(int enteredLength)
     {
-        _length_seconds = _entered_length; 
-        _length_mintues = $"{_length_seconds/60}:";
-        if (_length_seconds%60 == 0)
+        _lengthSeconds = enteredLength;
+        _lengthMintues = $"{_lengthSeconds / 60}:";
+        if (_lengthSeconds % 60 == 0)
         {
-            _length_mintues += "00";
+            _lengthMintues += "00";
         }
         else
         {
-            _length_mintues += $"{_length_seconds%60}";
+            _lengthMintues += $"{_lengthSeconds % 60}";
         }
     }
 
@@ -37,7 +37,7 @@ class Video
     {
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Author: {_author}");
-        Console.WriteLine($"Length in seconds: {_length_seconds}");
-        Console.WriteLine($"Length in Minutes: {_length_mintues}"); 
+        Console.WriteLine($"Length in seconds: {_lengthSeconds}");
+        Console.WriteLine($"Length in Minutes: {_lengthMintues}");
     }
 }
