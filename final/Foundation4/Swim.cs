@@ -1,10 +1,10 @@
 class Swim : Activity
 {
     private int _laps;
-    public Swim(int _dist_laps, int _minutes, string _date)
-    :base(_minutes, _date)
+    public Swim(int distLaps, int minutes, string date)
+    :base(minutes, date)
     {
-        _laps = _dist_laps;
+        _laps = distLaps;
     }
     public override double GetDistance()
     {

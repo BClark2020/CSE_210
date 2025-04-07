@@ -5,12 +5,12 @@ class Product
     private decimal _price = 0.00m;
     private int _qty = 1;
     
-    public Product(string _item_name, string _item_id, decimal _item_price, int _item_qty)
+    public Product(string itemName, string itemId, decimal itemPrice, int itemQty)
     {
-        _name = _item_name;
-        _id = _item_id;
-        _price = _item_price;
-        _qty = _item_qty;
+        _name = itemName;
+        _id = itemId;
+        _price = itemPrice;
+        _qty = itemQty;
     }
 
     public string GetItemName()

@@ -7,10 +7,10 @@ abstract class Activity
     private string _date;
 
     
-    public Activity(int _minutes, string _activity_date)
+    public Activity(int minutes, string activityDate)
     {
-        _time_minutes = _minutes;
-        _date = _activity_date;
+        _time_minutes = minutes;
+        _date = activityDate;
     }
     
     public int GetTime()

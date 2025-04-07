@@ -2,24 +2,24 @@ using System.Net.Sockets;
 class Gathering : Event
 {
     private string _weather = "Hopefully not raining";
-    public Gathering(string _title, string _description, string _date, Address _addrs, string _event_weather)
-    : base(_title, _description, _date, _addrs)
+    public Gathering(string title, string description, string date, Address addrs, string eventWeather)
+    : base(title, description, date, addrs)
     {
-        _weather = _event_weather;
+        _weather = eventWeather;
     }
     
     public override string DisplayFullDetails()
     {
-        string _ad = "Event type: Gathering\n";
-        _ad += $"Weather Forcast: {_weather}\n";
-        _ad += DisplayStandardDetails();
-        return _ad;
+        string ad = "Event type: Gathering\n";
+        ad += $"Weather Forcast: {_weather}\n";
+        ad += DisplayStandardDetails();
+        return ad;
     }
-     public override string DisplayShortDeescription()
+     public override string DisplayShortDescription()
     {
-        string _ad = "Event type: Gathering";
-        _ad += $"\nTitle: {GetTitle()}";
-        _ad += $"\nDate: {GetDate()}";
-        return _ad;
+        string ad = "Event type: Gathering";
+        ad += $"\nTitle: {GetTitle()}";
+        ad += $"\nDate: {GetDate()}";
+        return ad;
     }
 }

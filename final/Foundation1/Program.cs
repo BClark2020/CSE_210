@@ -7,9 +7,9 @@ class Program
     public List<(Video, Comment)> _videos = new List<(Video, Comment)>();
     static void Main(string[] args)
     {
-        Program _program = new Program(); 
-        _program.SetupExamples();
-        _program.Menu(); 
+        Program program = new Program(); 
+        program.SetupExamples();
+        program.Menu(); 
         Console.WriteLine("Thank you for using my prgram! Have a great day! (~^-^)~");
     }
     
@@ -17,12 +17,12 @@ class Program
     {
         while(true)
         {
-            string _option = "";
+            string option = "";
             Console.Clear();
             Console.Write("Enter a numer\n1.) Add Video\n2.) Display Videos\n3.) Quit\nOption: ");
-            _option = Console.ReadLine();
+            option = Console.ReadLine();
             
-            switch (_option)
+            switch (option)
             {
                 case "1":
                     AddNewVideo();
@@ -49,121 +49,121 @@ class Program
         Console.Clear();
         for (int i = 0; i < _videos.Count; i++)
         {
-            Video _vid = _videos[i].Item1;
-            Comment _com = _videos[i].Item2; 
-            _vid.DisplayInfo();
-            _com.DisplayInfo();
+            Video vid = _videos[i].Item1;
+            Comment com = _videos[i].Item2; 
+            vid.DisplayInfo();
+            com.DisplayInfo();
             Console.WriteLine("\n---------------------");
         }
         Console.WriteLine("Press enter to leave.");
-        string _wait = Console.ReadLine();
+        string wait = Console.ReadLine();
     }    
     
     private void AddNewVideo()
     {
-        Video _video = new Video();
-        Comment _comment = new Comment();
+        Video video = new Video();
+        Comment comment = new Comment();
                     
         // Get and save title
         Console.Write("Enter video title: ");
-        string _title = Console.ReadLine();
-        _video.SetTitle(_title);
+        string title = Console.ReadLine();
+        video.SetTitle(title);
                     
         // Get and save author
         Console.Write("Enter the author of the video: ");
-        string _author = Console.ReadLine();
-        _video.SetAuthor(_author);
+        string author = Console.ReadLine();
+        video.SetAuthor(author);
                  
                     
         // Get and save length
-        bool _var = false;
+        bool var = false;
         do
         {
             try
             {
                 Console.Write("Enter video length in seconds: ");
-                int _length = int.Parse(Console.ReadLine());
-                _video.SetLength(_length);
-                _var = false;
+                int length = int.Parse(Console.ReadLine());
+                video.SetLength(length);
+                var = false;
             } catch (FormatException)
             {
                 Console.WriteLine("\nFORMAT ERROR: Please enter an integer representing the lengh of the video in seconds.");
-                _var = true;
+                var = true;
             }
-        }while(_var);
+        }while(var);
                     
                     
         // edits the comment object 
-        _var = true;
-        while(_var)
+        var = true;
+        while(var)
         {
             Console.Clear();
             Console.WriteLine("Enter ' ' to leave.");
             Console.Write("Enter new comment: ");
-            string _new_comment = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(_new_comment))
+            string newComment = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newComment))
             {
-                 _var = false;
+                var = false;
             }
             else
             {
                 Console.Write("Enter the name of commentor: ");
-                string _new_name = Console.ReadLine();
-                _comment.AddComment(_new_name, _new_comment);  
+                string newName = Console.ReadLine();
+                comment.AddComment(newName, newComment);  
             }
         }
     
         // Saves eddited objects
-        _videos.Add((_video, _comment));  
+        _videos.Add((video, comment));  
     }
     
     private void SetupExamples()
     {
-        Video _vid1 = new Video();
-        Comment _com1 = new Comment();
-        Video _vid2 = new Video();
-        Comment _com2 = new Comment();
-        Video _vid3 = new Video();
-        Comment _com3 = new Comment();
-        Video _vid4 = new Video();
-        Comment _com4 = new Comment();
+        Video vid1 = new Video();
+        Comment com1 = new Comment();
+        Video vid2 = new Video();
+        Comment com2 = new Comment();
+        Video vid3 = new Video();
+        Comment com3 = new Comment();
+        Video vid4 = new Video();
+        Comment com4 = new Comment();
         
-        _vid1.SetTitle("Video 1");
-        _vid1.SetAuthor("Author 1");
-        _vid1.SetLength(100);
-        _com1.AddComment("Name 11", "Comment 11");
-        _com1.AddComment("Name 12", "Comment 12");
-        _com1.AddComment("Name 13", "Comment 13");
-        _com1.AddComment("Name 14", "Comment 14");
-        _com1.AddComment("Name 15", "Comment 15");
-        _videos.Add((_vid1, _com1));
+        vid1.SetTitle("Video 1");
+        vid1.SetAuthor("Author 1");
+        vid1.SetLength(100);
+        com1.AddComment("Name 11", "Comment 11");
+        com1.AddComment("Name 12", "Comment 12");
+        com1.AddComment("Name 13", "Comment 13");
+        com1.AddComment("Name 14", "Comment 14");
+        com1.AddComment("Name 15", "Comment 15");
+        _videos.Add((vid1, com1));
         
-        _vid2.SetTitle("Video 2");
-        _vid2.SetAuthor("Author 2");
-        _vid2.SetLength(200);
-        _com2.AddComment("Name 21", "Comment 21");
-        _com2.AddComment("Name 22", "Comment 22");
-        _com2.AddComment("Name 23", "Comment 23");
-        _com2.AddComment("Name 24", "Comment 24");
-        _videos.Add((_vid2, _com2));
+        vid2.SetTitle("Video 2");
+        vid2.SetAuthor("Author 2");
+        vid2.SetLength(200);
+        com2.AddComment("Name 21", "Comment 21");
+        com2.AddComment("Name 22", "Comment 22");
+        com2.AddComment("Name 23", "Comment 23");
+        com2.AddComment("Name 24", "Comment 24");
+        _videos.Add((vid2, com2));
         
-        _vid3.SetTitle("Video 3");
-        _vid3.SetAuthor("Author 3");
-        _vid3.SetLength(300);
-        _com3.AddComment("Name 31", "Comment 31");
-        _com3.AddComment("Name 32", "Comment 32");
-        _com3.AddComment("Name 33", "Comment 33");
-        _com3.AddComment("Name 34", "Comment 34");
-        _videos.Add((_vid3, _com3));
+        vid3.SetTitle("Video 3");
+        vid3.SetAuthor("Author 3");
+        vid3.SetLength(300);
+        com3.AddComment("Name 31", "Comment 31");
+        com3.AddComment("Name 32", "Comment 32");
+        com3.AddComment("Name 33", "Comment 33");
+        com3.AddComment("Name 34", "Comment 34");
+        _videos.Add((vid3, com3));
         
-        _vid4.SetTitle("Video 4");
-        _vid4.SetAuthor("Author 4");
-        _vid4.SetLength(400);
-        _com4.AddComment("Name 41", "Comment 41");
-        _com4.AddComment("Name 42", "Comment 42");
-        _com4.AddComment("Name 43", "Comment 43");
-        _com4.AddComment("Name 44", "Comment 44");
-        _com4.AddComment("Name 45", "Comment 45");
-        _videos.Add((_vid4, _com4));
+        vid4.SetTitle("Video 4");
+        vid4.SetAuthor("Author 4");
+        vid4.SetLength(400);
+        com4.AddComment("Name 41", "Comment 41");
+        com4.AddComment("Name 42", "Comment 42");
+        com4.AddComment("Name 43", "Comment 43");
+        com4.AddComment("Name 44", "Comment 44");
+        com4.AddComment("Name 45", "Comment 45");
+        _videos.Add((vid4, com4));
     }
 }

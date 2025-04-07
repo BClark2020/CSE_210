@@ -3,28 +3,28 @@ class Lecture : Event
     private string _speaker = "Bill Murray";
     private int _capacity = 100;
     
-    public Lecture( string _event_title, string _event_description, string _event_date, 
-    Address _event_addrs, string _event_speaker, int _event_capacity) 
-    : base(_event_title, _event_description, _event_date, _event_addrs)
+    public Lecture( string eventTitle, string eventDescription, string eventDate, 
+    Address eventAddrs, string eventSpeaker, int eventCapacity) 
+    : base(eventTitle, eventDescription, eventDate, eventAddrs)
     {
-        _speaker = _event_speaker;
-        _capacity = _event_capacity;
+        _speaker = eventSpeaker;
+        _capacity = eventCapacity;
     }
 
     public override string DisplayFullDetails()
     {
-        string _ad = "Event type: Lecture\n";
-        _ad += $"Speaker: {_speaker}";
-        _ad += $"\nCapacity: {_capacity}\n";
-        _ad += DisplayStandardDetails();
-        return _ad;  
+        string ad = "Event type: Lecture\n";
+        ad += $"Speaker: {_speaker}";
+        ad += $"\nCapacity: {_capacity}\n";
+        ad += DisplayStandardDetails();
+        return ad;  
     }
 
-    public override string DisplayShortDeescription()
+    public override string DisplayShortDescription()
     {
-        string _ad = "Event type: Lecture";
-        _ad += $"\nTitle: {GetTitle()}";
-        _ad += $"\nDate: {GetDate()}";
-        return _ad;
+        string ad = "Event type: Lecture";
+        ad += $"\nTitle: {GetTitle()}";
+        ad += $"\nDate: {GetDate()}";
+        return ad;
     }
 }
