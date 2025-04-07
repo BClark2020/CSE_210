@@ -139,7 +139,7 @@ class Order
         _shipping_label += $"\n{_customer.GetAddress()}"; 
     }
     
-    private void DisplayOrder()
+    public void DisplayOrder()
     {
         Console.WriteLine(_shipping_label);
         Console.WriteLine(_packing_label);
