@@ -11,6 +11,7 @@ class Program
             new Cycle(55, 60, "08/21/2015")
         };
         
+        Console.Clear();
         foreach(Activity _activity in _activities)
         {
             Console.WriteLine(_activity.Summary());

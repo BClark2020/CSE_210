@@ -10,7 +10,7 @@ class Cycle: Activity
     
     public override string Summary()
     {
-        string _summary = $"{GetDate()} Cycling({GetTime()} min) - Distance {(_speed / 60)*GetTime():0.00} miles, Speed {_speed} mph, Pace {60/_speed:0.00} min per mile";
+        string _summary = $"{GetDate()} Cycling ({GetTime()} min) - Distance {(_speed / 60)*GetTime():0.00} miles, Speed {_speed} mph, Pace {60/_speed:0.00} min per mile";
         return _summary;
     }
 }
