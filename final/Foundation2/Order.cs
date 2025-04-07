@@ -45,6 +45,7 @@ class Order
         while(_add)
         {
             Console.Clear();
+            Console.WriteLine("-------Enter Your Products-------");
             Console.WriteLine("Enter \" \" to leave.");
             
             Console.Write("Item Name: ");
@@ -101,7 +102,7 @@ class Order
     {
         decimal _total = 0.00m;
         _packing_label = "-------Packing Label-------";
-        _packing_label += "Item Name: Item ID";
+        _packing_label += "\nItem Name: Item ID";
         foreach (Product _product in _products)
         {
             string _item = _product.GetItemName();
@@ -110,14 +111,15 @@ class Order
             decimal _price = _product.GetPrice();
             int _qty = _product.GetQuantity();
             
-            _total += (_price * _qty);
+            _total += _price * _qty;
             
             string _line = $"\n{_item}: {_item_id}";
             _packing_label += _line;
         }
         decimal _tax = _total * 0.06m;
-        _packing_label += $"\nTotal Before Tax: ${_total}";
-        _packing_label += $"\nTax: ${_tax}";
+        Console.WriteLine("---Pricing---");
+        _packing_label += $"\nBefore Tax: ${_total}";
+        _packing_label += $"\nTax: ${_tax:0.00}";
         
         int _shipping;
         if (_customer.IsUSA())
@@ -134,14 +136,21 @@ class Order
     
     private void MakeShippingLabel()
     {
-        _shipping_label = "-------Packing Label-------";
+        _shipping_label = "-------Shipping Label-------";
         _shipping_label +=$"\n{_customer.GetCustomerName()}";
         _shipping_label += $"\n{_customer.GetAddress()}"; 
     }
     
-    public void DisplayOrder()
+
+        public void DisplayOrder( bool _display_all = false)
     {
+        Console.Clear();
         Console.WriteLine(_shipping_label);
         Console.WriteLine(_packing_label);
+        if (_display_all == false)
+        {
+            Console.WriteLine("Press enter to leave.");
+            string _wait =  Console.ReadLine();
+        } 
     }
 }

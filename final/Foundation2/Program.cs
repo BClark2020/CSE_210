@@ -16,7 +16,8 @@ class Program
     {
         while(true)
         {
-            Console.Write("Select a number:\n1.) Make New Order\n2.) Display Orders\n3.) Quit");
+            Console.Clear();
+            Console.Write("Select a number:\n1.) Make New Order\n2.) Display Orders\n3.) Quit\nOption: ");
             string _option = Console.ReadLine();
             
             switch(_option)
@@ -45,12 +46,13 @@ class Program
     }
     private void DisplayOrders()
     {
+        Console.Clear();
         foreach (Order _order in _orders)
         {
-            _order.DisplayOrder();
-             Console.WriteLine("\n");
+            _order.DisplayOrder(true);
+            Console.WriteLine("\n");
         }
-    }
-    
-    
+        Console.WriteLine("Press enter to leave.");
+        string _wait =  Console.ReadLine();
+    }  
 }
