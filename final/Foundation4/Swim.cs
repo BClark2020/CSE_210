@@ -6,10 +6,18 @@ class Swim : Activity
     {
         _laps = _dist_laps;
     }
-    
-    public override string Summary()
+    public override double GetDistance()
     {
-        string _summary = $"{GetDate()} Swimming ({GetTime()} min) - Distance {((_laps * 50)/1000 *0.62)} miles ({_laps} laps), Speed {(((_laps * 50)/1000 *0.62) / GetTime()) * 60} mph, Pace {(GetTime())/((_laps * 50)/1000 *0.62):0.00} min per mile";
-        return _summary;
+        return _laps * 50 / 1000.0 * 0.62; // meters to kilometers to miles
+    }
+
+    public override double GetSpeed()
+    {
+        return (GetDistance() / GetTime()) * 60;
+    }
+
+    public override double GetPace()
+    {
+        return GetTime() / GetDistance();
     }
 }

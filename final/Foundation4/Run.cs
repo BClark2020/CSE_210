@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 
 class Run : Activity
 {
@@ -9,9 +10,19 @@ class Run : Activity
         _distance = _dist;
     }
 
-    public override string Summary()
+    
+    public override double GetDistance()
+    { 
+        return _distance;
+    }
+
+    public override double GetSpeed()
     {
-        string _summary = $"{GetDate()} Running({GetTime()} min) - Distance {_distance} miles, Speed {(_distance/GetTime())*60:0.00} mph, Pace {GetTime()/_distance:0.00} min per mile";
-        return _summary;
+        return (_distance / GetTime()) * 60;
+    }
+
+    public override double GetPace()
+    {
+        return GetTime() / _distance;
     }
 }
